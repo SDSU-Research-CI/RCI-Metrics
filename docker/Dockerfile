@@ -20,6 +20,8 @@ RUN pip install --upgrade pip \
 
 # Copy your application code
 COPY rci_plugins/ /app/plugins/rci_plugins/
-COPY configs /app/configs/
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-CMD ["bash", "-c", "echo Running $CONFIG_FILE; python /app/src/main.py $CONFIG_FILE"]
+ENTRYPOINT ["/entrypoint.sh"]
+

@@ -30,11 +30,18 @@ spec:
             memory: 14Gi
         env:
         - name: CONFIG_FILE
-          value: ./configs/tidesplit.yaml        
+          value: /app/secret-config/config.yaml
         volumeMounts:
         - name: metrics-pvc
           mountPath: /app/io/
+        - name: metrics-config-secret
+          mountPath: /app/secret-config/
+          readOnly: true
       volumes:
       - name: metrics-pvc
         persistentVolumeClaim:
           claimName: metricspvc
+      - name: metrics-config-secret
+        secret:
+          secretName: metrics-config-secret
+

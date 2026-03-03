@@ -17,11 +17,12 @@ analysis:
     - alluniquens
 saving:
   base-path: "./io/monthly_latest"
-  exit-action: opendir
+  exit-action: none
   run:
     - AnalysisSaver
     - VizualizationsSaver
     - SummarySaver
+    - EmailSaver
 
 # Plugin-specific config sections
 PromQLIngestController:
