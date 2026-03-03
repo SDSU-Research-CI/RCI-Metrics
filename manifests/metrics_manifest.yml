@@ -20,7 +20,7 @@ spec:
                 operator: Exists
       containers:
       - name: metrics
-        image: east01/rcimetrics:0.1d
+        image: ghcr.io/sdsu-research-ci/rci-metrics:latest
         resources:
           limits:
             cpu: 6
