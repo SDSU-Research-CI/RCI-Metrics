@@ -3,6 +3,34 @@ kind: Pod
 metadata:
   name: pvc-debug
 spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: nautilus.io/csu-tide
+            operator: Exists
+        # nodeSelectorTerms:
+        # - matchExpressions:
+        #   - key: kubernetes.io/hostname
+        #     operator: In
+        #     values:
+        #     - rci-tide-dtn-01.sdsu.edu
+        #   - key: nautilus.io/linstor
+        #     operator: In
+        #     values:
+        #     - "true"
+  tolerations:
+    # - key: nautilus.io/csu-tide
+    #   effect: NoSchedule
+    #   operator: Exists
+    # - key: nautilus.io/sdsu-fix
+    #   effect: NoSchedule
+    #   operator: Exists
+    - key: nautilus.io/reservation
+      operator: Equal
+      value: csu-tide
+      effect: NoSchedule
   restartPolicy: Never
   containers:
   - name: busybox
