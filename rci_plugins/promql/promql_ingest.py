@@ -24,6 +24,8 @@ class PromQLIngestController(IngestPlugin):
         """ The PromQLIngestController's config section expects a query-cfgs section with a list of 
                 query configs to pull. 
         """
+        if(config_section is None):
+            return True
 
         def check_sec_exists(section):
             if(section not in config_section):
@@ -134,6 +136,13 @@ class PromQLIngestController(IngestPlugin):
 
     def add_cached(self, cfg, type, period, df: pd.DataFrame):
         cfg_name = cfg["cfg_name"]
+        cache_path = get_cache_path(cfg_name, type, period)
+
+        if(df.empty):
+            if(os.path.exists(cache_path)):
+                os.remove(cache_path)
+            return
+
         cache_root = os.path.join(CACHE_LOCATION, cfg_name)
 
         os.makedirs(cache_root, exist_ok=True)
@@ -145,7 +154,6 @@ class PromQLIngestController(IngestPlugin):
         cache_dir_path = get_cache_dir(cfg_name, type)
         os.makedirs(cache_dir_path, exist_ok=True)
 
-        cache_path = get_cache_path(cfg_name, type, period)
         df.to_csv(cache_path, index=False)
 
 def load_query_config(cfg_name, verify=False):
