@@ -22,7 +22,6 @@ saving:
     - AnalysisSaver
     - VizualizationsSaver
     - SummarySaver
-    - EmailSaver
 
 # Plugin-specific config sections
 PromQLIngestController:
