@@ -16,7 +16,7 @@ At the end of these instructions, your project structure should look like:
 
 If you don't want to write code for RCI metrics, only running it, all you have to do is:
 
-1. Download a copy of this repositories' .zip
+1. Download a copy of this repository as a .zip file
 1. Place rci_plugins into AutoMetric's plugins folder
 1. Place configs in a convenient location (I put mine in the AutoMetrics folder)
 
@@ -26,9 +26,8 @@ To develop the RCI metrics the installation is slightly more involved and based 
 operating system. Essentially, you'll be making symlinks instead of moving the files like above.
 
 1. Clone this repository with `git clone`
-1. Make a symlink located in AutoMetrics/plugins/rci_plugins pointing to rci_plugins in the cloned 
-repo.
-1. Make a symlink for your configs file placed wherever you want to call it from in the command.
+1. Make a symlink located in AutoMetrics/plugins/rci_plugins pointing to rci_plugins in the this repo.
+1. Make a symlink for your configs file placed wherever you want to call it using AutoTM. In the example above, the configs is directly symlinked from the base directory.
 
 ## Usage
 
